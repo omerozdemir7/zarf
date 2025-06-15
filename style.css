@@ -117,3 +117,113 @@ h1{
   transform: rotate(90deg);
   transition-delay: 0.1s;
 }
+
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5em; /* Başlığı küçült */
+        top: 20px; /* Konumu ayarla */
+    }
+
+    .container > .envelope-wrapper {
+        width: 260px; /* Zarfın genişliğini küçült */
+        height: 200px; /* Zarfın yüksekliğini küçült */
+    }
+
+    .envelope-wrapper > .envelope::before {
+        border-top: 100px solid var(--envelope-tab);
+        border-right: 130px solid transparent;
+        border-left: 130px solid transparent;
+    }
+
+    .envelope-wrapper > .envelope::after {
+        border-top: 100px solid transparent;
+        border-right: 130px solid var(--envelope-cover);
+        border-bottom: 80px solid var(--envelope-cover);
+        border-left: 130px solid var(--envelope-cover);
+    }
+
+    .envelope > .letter {
+        width: 70%; /* Kağıdı biraz daha genişlet */
+        height: 85%; /* Kağıdı biraz daha uzat */
+        padding: 10px; /* İç boşluğu küçült */
+    }
+
+    .envelope > .letter > .text {
+        font-size: 0.7em; /* Metin boyutunu küçült */
+    }
+
+    .heart {
+        width: 12px; /* Kalbi küçült */
+        height: 12px;
+    }
+
+    .heart:before,
+    .heart:after {
+        width: 12px;
+        height: 12px;
+    }
+
+    .heart:before {
+        top: -6px;
+    }
+
+    .heart:after {
+        right: 6px;
+    }
+
+    .flap > .envelope > .letter {
+        bottom: 80px; /* Kağıdın çıkış konumunu ayarla */
+        transform: translateX(-50%) translateY(-80px) scale(1.2); /* Mobil için büyüme oranını ayarla */
+    }
+}
+
+/* Ekstra küçük ekranlar için (örn. çok küçük telefonlar) */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.2em;
+        top: 10px;
+    }
+    .container > .envelope-wrapper {
+        width: 220px;
+        height: 170px;
+    }
+    .envelope-wrapper > .envelope::before {
+        border-top: 80px solid var(--envelope-tab);
+        border-right: 110px solid transparent;
+        border-left: 110px solid transparent;
+    }
+    .envelope-wrapper > .envelope::after {
+        border-top: 80px solid transparent;
+        border-right: 110px solid var(--envelope-cover);
+        border-bottom: 60px solid var(--envelope-cover);
+        border-left: 110px solid var(--envelope-cover);
+    }
+    .envelope > .letter {
+        width: 80%;
+        height: 90%;
+        padding: 8px;
+    }
+    .envelope > .letter > .text {
+        font-size: 0.6em;
+    }
+    .heart {
+        width: 10px;
+        height: 10px;
+    }
+    .heart:before,
+    .heart:after {
+        width: 10px;
+        height: 10px;
+    }
+    .heart:before {
+        top: -5px;
+    }
+    .heart:after {
+        right: 5px;
+    }
+    .flap > .envelope > .letter {
+        bottom: 60px;
+        transform: translateX(-50%) translateY(-60px) scale(1.1);
+    }
+}
