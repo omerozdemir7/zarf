@@ -89,7 +89,7 @@ h1{
   box-shadow: 0 1px 6px var(--shadow-color);
   cursor: pointer;
 }
-  
+
 .heart:before, 
 .heart:after {
   content: "";
@@ -120,41 +120,45 @@ h1{
 }
 
 
-@media (max-width: 732px) {
-  h1 {
-    font-size: 1rem;
-    top: 20px;
-  }
+@media (max-width: 732px) { /* Mevcut kodunuzdaki breakpoint'i kullandım */
+    h1 {
+        font-size: 1rem;
+        top: 20px;
+    }
 
-  .letter {
-    width: 60%;
-    height: 75%;
-    right: 15%;
-    font-size: 0.55rem;
-    padding: 10px 5px;
-  }
+    .letter {
+        width: 60%;
+        height: 75%;
+        right: 15%;
+        font-size: 0.55rem;
+        padding: 10px 5px;
+    }
 
-  .letter .text {
-    font-size: 0.6rem;
-  }
+    .letter .text {
+        font-size: 0.6rem;
+    }
 
-  .heart {
-    width: 12px;
-    height: 12px;
-    margin-top: 20px;
-  }
+    .heart {
+        width: 12px;
+        height: 12px;
+        /* Mobil görünümde de merkeze göre ortalama transform'u koruyoruz */
+        transform: translate(-50%, -50%) rotate(45deg); 
+        /* transition: none; */ /* Eğer mobil'de hiç animasyon olmamasını isterseniz bu satırı ekleyebilirsiniz */
+    }
 
-  .heart:before,
-  .heart:after {
-    width: 12px;
-    height: 12px;
-  }
+    .heart:before,
+    .heart:after {
+        width: 12px;
+        height: 12px;
+    }
 
-  .heart:before {
-    top: -6px;
-  }
+    .heart:before {
+        top: -6px;
+    }
 
-  .heart:after {
-    right: 6px;
-  }
+    .heart:after {
+        right: 6px;
+    }
+
+    /* .flap > .heart kısmı burada da kaldırıldı */
 }
