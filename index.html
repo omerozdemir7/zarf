@@ -19,13 +19,50 @@
                 </div>
             </div>
             <div class="heart"></div>
+            <div class="hearts-container"></div> </div>
         </div>
     </div>
     <script>
         const envelope = document.querySelector('.envelope-wrapper');
-        envelope.addEventListener('click', () => {
-            envelope.classList.toggle('flap');
-        });
+const heartsContainer = document.querySelector('.hearts-container'); // Select the new hearts container element
+
+envelope.addEventListener('click', () => {
+    envelope.classList.toggle('flap');
+
+    // If the envelope is now open (has the 'flap' class)
+    if (envelope.classList.contains('flap')) {
+        // Create multiple hearts
+        for (let i = 0; i < 15; i++) { // Adjust the number of hearts as desired
+            setTimeout(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart'); // Assign the CSS class for heart styling and animation
+
+                // Randomize heart properties for a more natural, varied effect
+                const randomLeft = 40 + (Math.random() * 20); // Hearts appear between 40% and 60% from left
+                const randomDuration = 2 + (Math.random() * 2); // Animation duration between 2 and 4 seconds
+                const randomDelay = Math.random() * 0.8; // Staggered appearance up to 0.8 seconds
+
+                heart.style.left = `${randomLeft}%`;
+                heart.style.animationDuration = `${randomDuration}s`;
+                heart.style.animationDelay = `${randomDelay}s`;
+
+                // Append the heart to the dedicated container
+                heartsContainer.appendChild(heart);
+
+                // Remove the heart element after its animation finishes to clean up the DOM
+                heart.addEventListener('animationend', () => {
+                    heart.remove();
+                });
+            }, i * 120); // Stagger the creation of each heart by 120 milliseconds
+        }
+    } else {
+        // If the envelope is closing, clear any existing hearts immediately
+        // This prevents hearts from continuing to float if the user closes it quickly
+        heartsContainer.innerHTML = ''; 
+    }
+});
+
+        
     </script>
 </body>
 </html>
