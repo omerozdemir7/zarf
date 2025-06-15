@@ -140,6 +140,7 @@ h1{
   .heart {
     width: 12px;
     height: 12px;
+    margin-top: 20px;
   }
 
   .heart:before,
