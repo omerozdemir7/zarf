@@ -144,7 +144,7 @@ h1{
         /* Mobil görünümde de merkeze göre ortalama transform'u koruyoruz */
         transform: translate(-50%, -50%) rotate(45deg); 
         position: absolute;
-        top: 350px;
+        top: 370px;
         
         
        
