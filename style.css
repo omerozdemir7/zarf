@@ -119,71 +119,40 @@ h1{
 }
 
 
-@media (max-width: 600px) {
-    h1 {
-        font-size: 1.5em;
-        top: 20px;
-    }
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1rem;
+    top: 20px;
+  }
 
-    .container > .envelope-wrapper {
-        width: 260px;
-        height: 200px;
-    }
+  .letter {
+    width: 60%;
+    height: 75%;
+    right: 15%;
+    font-size: 0.55rem;
+    padding: 10px 5px;
+  }
 
-    .envelope-wrapper > .envelope::before {
-        border-top: 100px solid var(--envelope-tab);
-        border-right: 130px solid transparent;
-        border-left: 130px solid transparent;
-    }
+  .letter .text {
+    font-size: 0.6rem;
+  }
 
-    .envelope-wrapper > .envelope::after {
-        border-top: 100px solid transparent;
-        border-right: 130px solid var(--envelope-cover);
-        border-bottom: 80px solid var(--envelope-cover);
-        border-left: 130px solid var(--envelope-cover);
-    }
+  .heart {
+    width: 12px;
+    height: 12px;
+  }
 
-    .envelope > .letter {
-        width: 70%;
-        height: 85%;
-        padding: 10px;
-    }
+  .heart:before,
+  .heart:after {
+    width: 12px;
+    height: 12px;
+  }
 
-    .envelope > .letter > .text {
-        font-size: 0.7em;
-    }
+  .heart:before {
+    top: -6px;
+  }
 
-    .heart {
-        width: 12px;
-        height: 12px;
-        /* YENİ: Mobil görünümde de merkeze göre ortalama */
-        position: absolute;
-        top: 50px;
-    }
-
-    .heart:before,
-    .heart:after {
-        width: 12px;
-        height: 12px;
-    }
-
-    .heart:before {
-        top: -6px;
-    }
-
-    .heart:after {
-        right: 6px;
-    }
-
-    .flap > .envelope > .letter {
-        bottom: 80px;
-        transform: translateX(-50%) translateY(-80px) scale(1.2);
-    }
-    
-    .flap > .heart {
-        /* YENİ: Mobil görünümde de kaybolurken merkeze göre küçülterek yok et */
-        transform: translate(-50%, -50%) rotate(90deg) scale(0);
-        opacity: 0;
-    }
+  .heart:after {
+    right: 6px;
+  }
 }
-
