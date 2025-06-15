@@ -157,7 +157,8 @@ h1{
         width: 12px;
         height: 12px;
         /* YENİ: Mobil görünümde de merkeze göre ortalama */
-        transform: translate(-50%, -50%) rotate(45deg); 
+        position: absolute;
+        top: 50px;
     }
 
     .heart:before,
@@ -186,59 +187,3 @@ h1{
     }
 }
 
-/* Ekstra küçük ekranlar için (örn. çok küçük telefonlar) */
-@media (max-width: 400px) {
-    h1 {
-        font-size: 1.2em;
-        top: 10px;
-    }
-    .container > .envelope-wrapper {
-        width: 220px;
-        height: 170px;
-    }
-    .envelope-wrapper > .envelope::before {
-        border-top: 80px solid var(--envelope-tab);
-        border-right: 110px solid transparent;
-        border-left: 110px solid transparent;
-    }
-    .envelope-wrapper > .envelope::after {
-        border-top: 80px solid transparent;
-        border-right: 110px solid var(--envelope-cover);
-        border-bottom: 60px solid var(--envelope-cover);
-        border-left: 110px solid var(--envelope-cover);
-    }
-    .envelope > .letter {
-        width: 80%;
-        height: 90%;
-        padding: 8px;
-    }
-    .envelope > .letter > .text {
-        font-size: 0.6em;
-    }
-    .heart {
-        width: 10px;
-        height: 10px;
-        /* YENİ: Ekstra küçük mobil görünümde de merkeze göre ortalama */
-        transform: translate(-50%, -50%) rotate(45deg);
-    }
-    .heart:before,
-    .heart:after {
-        width: 10px;
-        height: 10px;
-    }
-    .heart:before {
-        top: -5px;
-    }
-    .heart:after {
-        right: 5px;
-    }
-    .flap > .envelope > .letter {
-        bottom: 60px;
-        transform: translateX(-50%) translateY(-60px) scale(1.1);
-    }
-    .flap > .heart {
-        /* YENİ: Ekstra küçük mobil görünümde de kaybolurken merkeze göre küçülterek yok et */
-        transform: translate(-50%, -50%) rotate(90deg) scale(0);
-        opacity: 0;
-    }
-}
