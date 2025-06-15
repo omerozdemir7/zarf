@@ -84,11 +84,12 @@ h1{
   height: 15px;
   background: red;
   z-index: 4;
-  transform: translate(-50%, -20%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg); /* -20% yerine -50% */
   transition: transform 0.5s ease-in-out 1s;
   box-shadow: 0 1px 6px var(--shadow-color);
   cursor: pointer;
 }
+  
 .heart:before, 
 .heart:after {
   content: "";
