@@ -121,13 +121,13 @@ h1{
 
 @media (max-width: 600px) {
     h1 {
-        font-size: 1.5em; /* Başlığı küçült */
-        top: 20px; /* Konumu ayarla */
+        font-size: 1.5em;
+        top: 20px;
     }
 
     .container > .envelope-wrapper {
-        width: 260px; /* Zarfın genişliğini küçült */
-        height: 200px; /* Zarfın yüksekliğini küçült */
+        width: 260px;
+        height: 200px;
     }
 
     .envelope-wrapper > .envelope::before {
@@ -144,18 +144,20 @@ h1{
     }
 
     .envelope > .letter {
-        width: 70%; /* Kağıdı biraz daha genişlet */
-        height: 85%; /* Kağıdı biraz daha uzat */
-        padding: 10px; /* İç boşluğu küçült */
+        width: 70%;
+        height: 85%;
+        padding: 10px;
     }
 
     .envelope > .letter > .text {
-        font-size: 0.7em; /* Metin boyutunu küçült */
+        font-size: 0.7em;
     }
 
     .heart {
-        width: 12px; /* Kalbi küçült */
+        width: 12px;
         height: 12px;
+        /* YENİ: Mobil görünümde de merkeze göre ortalama */
+        transform: translate(-50%, -50%) rotate(45deg); 
     }
 
     .heart:before,
@@ -173,8 +175,14 @@ h1{
     }
 
     .flap > .envelope > .letter {
-        bottom: 80px; /* Kağıdın çıkış konumunu ayarla */
-        transform: translateX(-50%) translateY(-80px) scale(1.2); /* Mobil için büyüme oranını ayarla */
+        bottom: 80px;
+        transform: translateX(-50%) translateY(-80px) scale(1.2);
+    }
+    
+    .flap > .heart {
+        /* YENİ: Mobil görünümde de kaybolurken merkeze göre küçülterek yok et */
+        transform: translate(-50%, -50%) rotate(90deg) scale(0);
+        opacity: 0;
     }
 }
 
@@ -210,6 +218,8 @@ h1{
     .heart {
         width: 10px;
         height: 10px;
+        /* YENİ: Ekstra küçük mobil görünümde de merkeze göre ortalama */
+        transform: translate(-50%, -50%) rotate(45deg);
     }
     .heart:before,
     .heart:after {
@@ -225,5 +235,10 @@ h1{
     .flap > .envelope > .letter {
         bottom: 60px;
         transform: translateX(-50%) translateY(-60px) scale(1.1);
+    }
+    .flap > .heart {
+        /* YENİ: Ekstra küçük mobil görünümde de kaybolurken merkeze göre küçülterek yok et */
+        transform: translate(-50%, -50%) rotate(90deg) scale(0);
+        opacity: 0;
     }
 }
