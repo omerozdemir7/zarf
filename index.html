@@ -28,51 +28,46 @@
     <script>
         const envelope = document.querySelector('.envelope-wrapper');
         const heartsContainer = document.querySelector('.hearts-container');
-        const heart = document.querySelector('.heart'); // Kalp elementini seçiyoruz
+        const heart = document.querySelector('.heart');
 
-        // Bu event listener zarfı AÇAR
+        // Bu event listener sadece zarfı AÇAR (kalp oluşturma kodu kaldırıldı)
         envelope.addEventListener('click', () => {
-            // Eğer zarf zaten açıksa veya bir butona tıklandıysa, bir şey yapma
             if (envelope.classList.contains('flap') || event.target.tagName === 'BUTTON') {
                 return;
             }
             envelope.classList.add('flap');
-
-            // Kalplerin oluşma animasyonu
-            if (envelope.classList.contains('flap')) {
-                for (let i = 0; i < 15; i++) {
-                    setTimeout(() => {
-                        const floatingHeart = document.createElement('div');
-                        floatingHeart.classList.add('floating-heart');
-                        const randomLeft = 40 + (Math.random() * 20);
-                        const randomDuration = 2 + (Math.random() * 2);
-                        const randomDelay = Math.random() * 0.8;
-                        floatingHeart.style.left = `${randomLeft}%`;
-                        floatingHeart.style.animationDuration = `${randomDuration}s`;
-                        floatingHeart.style.animationDelay = `${randomDelay}s`;
-                        heartsContainer.appendChild(floatingHeart);
-                        floatingHeart.addEventListener('animationend', () => {
-                            floatingHeart.remove();
-                        });
-                    }, i * 120);
-                }
-            }
         });
 
         // Bu event listener sadece kalbe tıklandığında zarfı KAPATIR
         heart.addEventListener('click', (event) => {
-            // Sadece zarf açıksa kapat
             if (envelope.classList.contains('flap')) {
-                // Tıklamanın zarfın kendisine yayılmasını engelle (yeniden açılmasını önler)
                 event.stopPropagation(); 
                 envelope.classList.remove('flap');
-                heartsContainer.innerHTML = ''; // Uçan kalpleri temizle
+                heartsContainer.innerHTML = '';
             }
         });
 
         function handleYesClick() {
             const mainText = document.getElementById('main-text');
             mainText.textContent = "Harika nikah dairesine geçebiliriz";
+
+            // Kalp oluşturma animasyonu "Evet" butonuna basıldığında başlar
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const floatingHeart = document.createElement('div');
+                    floatingHeart.classList.add('floating-heart');
+                    const randomLeft = 40 + (Math.random() * 20);
+                    const randomDuration = 2 + (Math.random() * 2);
+                    const randomDelay = Math.random() * 0.8;
+                    floatingHeart.style.left = `${randomLeft}%`;
+                    floatingHeart.style.animationDuration = `${randomDuration}s`;
+                    floatingHeart.style.animationDelay = `${randomDelay}s`;
+                    heartsContainer.appendChild(floatingHeart);
+                    floatingHeart.addEventListener('animationend', () => {
+                        floatingHeart.remove();
+                    });
+                }, i * 120);
+            }
         }
 
         function handleNoClick() {
