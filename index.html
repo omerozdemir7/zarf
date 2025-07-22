@@ -16,9 +16,9 @@
                         <h1 id="main-text">Merhaba çok tatlısınız. Tanışabilir miyiz?</h1>
                     </div>
                     <div class="button-container">
-                        <button onclick="handleYesClick()">Evet</button>
-                        <button onclick="handleNoClick()">Hayır</button>
-                    </div>
+    <button onclick="handleYesClick(event)">Evet</button>
+    <button onclick="handleNoClick(event)">Hayır</button>
+</div>
                 </div>
             </div>
             <div class="heart"></div>
@@ -26,54 +26,55 @@
         </div>
     </div>
     <script>
-        const envelope = document.querySelector('.envelope-wrapper');
-        const heartsContainer = document.querySelector('.hearts-container');
-        const heart = document.querySelector('.heart');
+    const envelope = document.querySelector('.envelope-wrapper');
+    const heartsContainer = document.querySelector('.hearts-container');
+    const heart = document.querySelector('.heart');
 
-        // Bu event listener sadece zarfı AÇAR.
-        // Kalp oluşturma kodu buradan kaldırılmıştır.
-        envelope.addEventListener('click', () => {
-            if (envelope.classList.contains('flap') || event.target.tagName === 'BUTTON') {
-                return;
-            }
-            envelope.classList.add('flap');
-        });
-
-        // Bu event listener sadece kalbe tıklandığında zarfı KAPATIR.
-        heart.addEventListener('click', (event) => {
-            if (envelope.classList.contains('flap')) {
-                event.stopPropagation(); 
-                envelope.classList.remove('flap');
-                heartsContainer.innerHTML = ''; // Uçan kalpleri temizle
-            }
-        });
-
-        function handleYesClick() {
-            const mainText = document.getElementById('main-text');
-            mainText.textContent = "Harika nikah dairesine geçebiliriz";
-
-            // Kalp oluşturma animasyonu "Evet" butonuna basıldığında başlar.
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    const floatingHeart = document.createElement('div');
-                    floatingHeart.classList.add('floating-heart');
-                    const randomLeft = 40 + (Math.random() * 20);
-                    const randomDuration = 2 + (Math.random() * 2);
-                    const randomDelay = Math.random() * 0.2;
-                    floatingHeart.style.left = `${randomLeft}%`;
-                    floatingHeart.style.animationDuration = `${randomDuration}s`;
-                    floatingHeart.style.animationDelay = `${randomDelay}s`;
-                    heartsContainer.appendChild(floatingHeart);
-                    floatingHeart.addEventListener('animationend', () => {
-                        floatingHeart.remove();
-                    });
-                }, i * 120);
-            }
+    // Bu event listener sadece zarfı AÇAR.
+    envelope.addEventListener('click', (event) => { // event parametresini ekle
+        if (envelope.classList.contains('flap') || event.target.tagName === 'BUTTON') {
+            return;
         }
+        envelope.classList.add('flap');
+    });
 
-        function handleNoClick() {
-            alert("Bu seçenek geçersiz. Lütfen tekrar deneyin.");
+    // Bu event listener sadece kalbe tıklandığında zarfı KAPATIR.
+    heart.addEventListener('click', (event) => {
+        if (envelope.classList.contains('flap')) {
+            event.stopPropagation();
+            envelope.classList.remove('flap');
+            heartsContainer.innerHTML = ''; // Uçan kalpleri temizle
         }
-    </script>
+    });
+
+    function handleYesClick(event) { // event parametresini ekle
+        event.stopPropagation(); // Olayın yayılmasını durdur
+        const mainText = document.getElementById('main-text');
+        mainText.textContent = "Harika nikah dairesine geçebiliriz";
+
+        // Kalp oluşturma animasyonu "Evet" butonuna basıldığında başlar.
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const floatingHeart = document.createElement('div');
+                floatingHeart.classList.add('floating-heart');
+                const randomLeft = 40 + (Math.random() * 20);
+                const randomDuration = 2 + (Math.random() * 2);
+                const randomDelay = Math.random() * 0.2;
+                floatingHeart.style.left = `${randomLeft}%`;
+                floatingHeart.style.animationDuration = `${randomDuration}s`;
+                floatingHeart.style.animationDelay = `${randomDelay}s`;
+                heartsContainer.appendChild(floatingHeart);
+                floatingHeart.addEventListener('animationend', () => {
+                    floatingHeart.remove();
+                });
+            }, i * 120);
+        }
+    }
+
+    function handleNoClick(event) { // event parametresini ekle
+        event.stopPropagation(); // Olayın yayılmasını durdur
+        alert("Bu seçenek geçersiz. Lütfen tekrar deneyin.");
+    }
+</script>
 </body>
 </html>
