@@ -75,7 +75,7 @@ body{
 
 h1{
   position: relative;
-  top: 0px;
+  top: -20px;
   font-size: 1rem;
   text-align: center;
 }
@@ -85,6 +85,9 @@ h1{
     opacity: 0;
     pointer-events: none; /* ekle */
     transition: opacity 0.5s ease-in-out 1.5s;
+    position: absolute;
+    justify-self: center;
+    top:60px;
 }
 
 
