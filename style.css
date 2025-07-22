@@ -172,7 +172,7 @@ h1{
     height: 15px;
     transform: rotate(45deg);
     opacity: 0;
-    animation: floatOut 3s ease-out forwards;
+    animation: floatOut 1s ease-out forwards;
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%) rotate(45deg);

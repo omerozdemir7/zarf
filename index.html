@@ -30,7 +30,8 @@
         const heartsContainer = document.querySelector('.hearts-container');
         const heart = document.querySelector('.heart');
 
-        // Bu event listener sadece zarfı AÇAR (kalp oluşturma kodu kaldırıldı)
+        // Bu event listener sadece zarfı AÇAR.
+        // Kalp oluşturma kodu buradan kaldırılmıştır.
         envelope.addEventListener('click', () => {
             if (envelope.classList.contains('flap') || event.target.tagName === 'BUTTON') {
                 return;
@@ -38,12 +39,12 @@
             envelope.classList.add('flap');
         });
 
-        // Bu event listener sadece kalbe tıklandığında zarfı KAPATIR
+        // Bu event listener sadece kalbe tıklandığında zarfı KAPATIR.
         heart.addEventListener('click', (event) => {
             if (envelope.classList.contains('flap')) {
                 event.stopPropagation(); 
                 envelope.classList.remove('flap');
-                heartsContainer.innerHTML = '';
+                heartsContainer.innerHTML = ''; // Uçan kalpleri temizle
             }
         });
 
@@ -51,14 +52,14 @@
             const mainText = document.getElementById('main-text');
             mainText.textContent = "Harika nikah dairesine geçebiliriz";
 
-            // Kalp oluşturma animasyonu "Evet" butonuna basıldığında başlar
+            // Kalp oluşturma animasyonu "Evet" butonuna basıldığında başlar.
             for (let i = 0; i < 15; i++) {
                 setTimeout(() => {
                     const floatingHeart = document.createElement('div');
                     floatingHeart.classList.add('floating-heart');
                     const randomLeft = 40 + (Math.random() * 20);
                     const randomDuration = 2 + (Math.random() * 2);
-                    const randomDelay = Math.random() * 0.8;
+                    const randomDelay = Math.random() * 0.2;
                     floatingHeart.style.left = `${randomLeft}%`;
                     floatingHeart.style.animationDuration = `${randomDuration}s`;
                     floatingHeart.style.animationDelay = `${randomDelay}s`;
