@@ -16,45 +16,40 @@
                         <h1 id="main-text">Merhaba çok tatlısınız. Tanışabilir miyiz?</h1>
                     </div>
                     <div class="button-container">
-    <button onclick="handleYesClick(event)">Evet</button>
-    <button onclick="handleNoClick(event)">Hayır</button>
-</div>
+                        <button onclick="handleYesClick(event)">Evet</button>
+                        <button onclick="handleNoClick(event)">Hayır</button>
+                    </div>
                 </div>
             </div>
             <div class="heart"></div>
             <div class="hearts-container"></div>
         </div>
     </div>
-    <script>
+<script>
     const envelope = document.querySelector('.envelope-wrapper');
     const heartsContainer = document.querySelector('.hearts-container');
     const heart = document.querySelector('.heart');
 
     // Bu event listener sadece zarfı AÇAR.
-  envelope.addEventListener('click', (event) => {
-    // Sadece doğrudan envelope-wrapper'a tıklanırsa çalışsın
-    if (
-        envelope.classList.contains('flap') ||
-        !event.currentTarget.contains(event.target) ||
-        event.target.closest('.letter') || // buton, yazı vs.
-        event.target.closest('button')
-    ) {
-        return;
-    }
-    envelope.classList.add('flap');
-});
+    envelope.addEventListener('click', (event) => {
+        // Eğer tıklanan element bir buton ise veya zarf zaten açıksa, hiçbir şey yapma.
+        if (event.target.tagName === 'BUTTON' || envelope.classList.contains('flap')) {
+            return;
+        }
+        envelope.classList.add('flap');
+    });
 
     // Bu event listener sadece kalbe tıklandığında zarfı KAPATIR.
     heart.addEventListener('click', (event) => {
         if (envelope.classList.contains('flap')) {
-            event.stopPropagation();
+            event.stopPropagation(); // Olayın yayılmasını engelle
             envelope.classList.remove('flap');
             heartsContainer.innerHTML = ''; // Uçan kalpleri temizle
         }
     });
 
-    function handleYesClick(event) { // event parametresini ekle
-        event.stopPropagation(); // Olayın yayılmasını durdur
+    function handleYesClick(event) {
+        event.stopPropagation(); // Olayın üst elementlere yayılmasını durdur
         const mainText = document.getElementById('main-text');
         mainText.textContent = "Harika nikah dairesine geçebiliriz";
 
@@ -77,8 +72,8 @@
         }
     }
 
-    function handleNoClick(event) { // event parametresini ekle
-        event.stopPropagation(); // Olayın yayılmasını durdur
+    function handleNoClick(event) {
+        event.stopPropagation(); // Olayın üst elementlere yayılmasını durdur
         alert("Bu seçenek geçersiz. Lütfen tekrar deneyin.");
     }
 </script>
