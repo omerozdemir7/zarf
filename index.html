@@ -32,7 +32,13 @@
 
     // Bu event listener sadece zarfı AÇAR.
   envelope.addEventListener('click', (event) => {
-    if (envelope.classList.contains('flap') || event.target.closest('button')) {
+    // Sadece doğrudan envelope-wrapper'a tıklanırsa çalışsın
+    if (
+        envelope.classList.contains('flap') ||
+        !event.currentTarget.contains(event.target) ||
+        event.target.closest('.letter') || // buton, yazı vs.
+        event.target.closest('button')
+    ) {
         return;
     }
     envelope.classList.add('flap');

@@ -82,9 +82,11 @@ h1{
 
 .button-container {
     margin-top: 15px;
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.5s ease-in-out 1.5s; /* Fade in after the letter is out */
+    opacity: 0;
+    pointer-events: none; /* ekle */
+    transition: opacity 0.5s ease-in-out 1.5s;
 }
+
 
 .button-container button {
     padding: 8px 15px;
@@ -148,7 +150,8 @@ h1{
 }
 
 .flap .button-container {
-    opacity: 1; /* Make buttons visible */
+    opacity: 1;
+    pointer-events: auto; /* ekle */
 }
 
 .flap > .heart {
