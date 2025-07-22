@@ -217,8 +217,8 @@ h1{
 }
 
 @media (min-width: 320px) {
-  h1 { 
-    font-size: 1rem;
+   h1 {
+    font-size: 0.9rem;
     top: -20px;
   }
 
@@ -254,8 +254,9 @@ h1{
   }
 
   .button-container button{
-    position: absolute;
-    
+    position: relative;
+    top: 0;
+    justify-content: center;
    
   }
 }
