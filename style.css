@@ -255,8 +255,7 @@ h1{
 
   .button-container button{
     position: absolute;
-    top: 0;
-    justify-self: center;
+    
    
   }
 }
