@@ -256,8 +256,6 @@ h1{
   .button-container button{
     position: relative;
     top:0;
-    justify-self: center;
-    align-items: center;
-    justify-content: center;
+   left: 20px;
   }
 }
