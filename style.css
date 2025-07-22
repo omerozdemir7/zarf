@@ -257,5 +257,7 @@ h1{
     position: relative;
     top:0;
     justify-self: center;
+    align-items: center;
+    justify-content: center;
   }
 }
