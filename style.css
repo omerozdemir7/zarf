@@ -257,6 +257,9 @@ h1{
     position: relative;
     top: 0;
     justify-content: center;
-   
+    justify-items: center;
+    justify-self: center;
+    align-items: center;
+    
   }
 }
