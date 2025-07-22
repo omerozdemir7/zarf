@@ -31,12 +31,12 @@
     const heart = document.querySelector('.heart');
 
     // Bu event listener sadece zarfı AÇAR.
-    envelope.addEventListener('click', (event) => { // event parametresini ekle
-        if (envelope.classList.contains('flap') || event.target.tagName === 'BUTTON') {
-            return;
-        }
-        envelope.classList.add('flap');
-    });
+  envelope.addEventListener('click', (event) => {
+    if (envelope.classList.contains('flap') || event.target.closest('button')) {
+        return;
+    }
+    envelope.classList.add('flap');
+});
 
     // Bu event listener sadece kalbe tıklandığında zarfı KAPATIR.
     heart.addEventListener('click', (event) => {
