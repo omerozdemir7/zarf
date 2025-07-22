@@ -81,16 +81,18 @@ h1{
 }
 
 .button-container {
-    margin-top: 15px;
-    opacity: 0;
-    pointer-events: none; /* ekle */
-    transition: opacity 0.5s ease-in-out 1.5s;
     position: absolute;
-    justify-self: center;
-    align-items: center;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
     justify-content: center;
-    top:60px;
+    gap: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out 1.5s;
 }
+
 
 
 .button-container button {
@@ -98,9 +100,12 @@ h1{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin: 0 5px;
     background-color: #e2a2a2;
     color: white;
+    font-size: 14px;
 }
+
 
 .button-container button:hover {
     background-color: #d18787;
@@ -254,10 +259,5 @@ h1{
     right: 6px;
   }
 
-  .button-container button{
-    position: relative;
-    top: 0;
-   
 
-  }
 }
