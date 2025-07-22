@@ -219,7 +219,7 @@ h1{
 @media (max-width: 1100px) {
   h1 { 
     font-size: 1rem;
-    top: 0;
+    top: -20px;
   }
 
   .letter {
@@ -251,5 +251,10 @@ h1{
 
   .heart:after {
     right: 6px;
+  }
+
+  .button-container button{
+    position: relative;
+    top:-10px;
   }
 }
