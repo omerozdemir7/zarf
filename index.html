@@ -13,7 +13,7 @@
             <div class="envelope">
                 <div class="letter">
                     <div class="text">
-                        <h1 id="main-text">Merhaba çok tatlısınız. Tanışabilir miyiz?</h1>
+                        <h1 id="main-text">Beni seviyor musun?</h1>
                     </div>
                     <div class="button-container">
                         <button onclick="handleYesClick(event)">Evet</button>
@@ -29,31 +29,36 @@
     const envelope = document.querySelector('.envelope-wrapper');
     const heartsContainer = document.querySelector('.hearts-container');
     const heart = document.querySelector('.heart');
+    const mainText = document.getElementById('main-text');
 
-    // Bu event listener sadece zarfı AÇAR.
+    const messages = [
+        "Benimle gezmeyi seviyor musun?",
+        "Sonsuza kadar yanımda kalır mısın?",
+        "Merhaba Ayşegül, her ne kadar ayrı olsakta seni tüm kalbimle sevdiğimi bilmeni istiyorum. Sana olan sevgim ölçülemeyecek kadar ama bu birlikte olmamıza yetmiyor. Kime baksam seni görüyorum nereye gitsem seni istiyorum. Hayatımda kimseyi bu kadar sevmedim kimse için bu kadar çaba göstermedim senin yerin her zaman farklı olacak bugün de yarın da... Belki bir gün yine aynı oluruz ama belki de birbirimizi son görüşümüz olur o yüzden kendine hep iyi bak ve sana attığım linki hiç silme ne zaman değersiz hissedersen ne zaman sevilmediğini hiisedersen buraya gel ve seni her zaman seven birinin olduğunu hatırla :)" // bu son mesaj
+    ];
+    let currentMessageIndex = 0;
+
     envelope.addEventListener('click', (event) => {
-        // Eğer tıklanan element bir buton ise veya zarf zaten açıksa, hiçbir şey yapma.
         if (event.target.tagName === 'BUTTON' || envelope.classList.contains('flap')) {
             return;
         }
         envelope.classList.add('flap');
     });
 
-    // Bu event listener sadece kalbe tıklandığında zarfı KAPATIR.
     heart.addEventListener('click', (event) => {
         if (envelope.classList.contains('flap')) {
-            event.stopPropagation(); // Olayın yayılmasını engelle
+            event.stopPropagation();
             envelope.classList.remove('flap');
-            heartsContainer.innerHTML = ''; // Uçan kalpleri temizle
+            heartsContainer.innerHTML = '';
         }
     });
 
-    function handleYesClick(event) {
-        event.stopPropagation(); // Olayın üst elementlere yayılmasını durdur
-        const mainText = document.getElementById('main-text');
-        mainText.textContent = "Harika nikah dairesine geçebiliriz";
+  function handleYesClick(event) {
+    event.stopPropagation();
+    mainText.textContent = messages[currentMessageIndex];
 
-        // Kalp oluşturma animasyonu "Evet" butonuna basıldığında başlar.
+    if (currentMessageIndex === messages.length - 1) {
+        // Kalpleri uçur
         for (let i = 0; i < 15; i++) {
             setTimeout(() => {
                 const floatingHeart = document.createElement('div');
@@ -70,12 +75,24 @@
                 });
             }, i * 120);
         }
+
+        // Butonları gizle
+        document.querySelector(".button-container").style.display = "none";
+
+        // Mektubu büyüt ve dışarı çıkar
+        document.querySelector(".letter").classList.add("expand");
     }
 
+    if (currentMessageIndex < messages.length - 1) {
+        currentMessageIndex++;
+    }
+}
+
     function handleNoClick(event) {
-        event.stopPropagation(); // Olayın üst elementlere yayılmasını durdur
-        alert("Bu seçenek geçersiz. Lütfen tekrar deneyin.");
+        event.stopPropagation();
+        alert("Hayır diyemezsin Ayşegül :)");
     }
 </script>
+
 </body>
 </html>

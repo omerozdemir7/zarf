@@ -111,6 +111,24 @@ h1{
     background-color: #d18787;
 }
 
+/* MODIFIED: This rule defines the final state of the letter for the long message. */
+.letter.expand {
+    width: 50%;
+    height: 120%;
+    bottom: 130px;
+    top: 0;
+    transform: scale(1.4); /* Make the letter larger */
+    z-index: 5;
+    overflow-y: auto; /* Enable scrolling for the long message */
+    transition: all 0.5s ease-out; /* Smooth transition to the expanded state */
+}
+
+/* MODIFIED: Adjusted font size for better readability in the expanded view. */
+.letter.expand .text {
+    font-size: 0.9rem;
+    text-align: left;
+}
+
 .envelope-wrapper {
   position: relative;
   display: flex;
