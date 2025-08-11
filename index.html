@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Envelope + Letter (Open/Close on Click)</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <h1 id="main-text">Tu min hez dikî?</h1>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="handleYesClick(event)">Erê</button>
+                        <button onclick="handleNoClick(event)">Na</button>
+                    </div>
+                </div>
+            </div>
+            <div class="heart"></div>
+        </div>
+        <div class="hearts-container"></div>
+    </div>
+<script>
+    const envelope = document.querySelector('.envelope-wrapper');
+    const heart = document.querySelector('.heart');
+    const mainText = document.getElementById('main-text');
+
+    const messages = [
+        "Tu hez dikî bi min re rêwîtiyê bikî?",
+        "Tu dê her û her li kêleka min bimînî?",
+        "Silav Rozerîn, di demek kurt de ez ji te pir hez kirim, lê min nizanim ku tu ewqase hişk î. Niyeta min ne ew bû ku ez te biêşînim an jî tiştekî xelet bêjim; ew bi tevahî paqij bû. Gelo tu dixwazî bi min re biaxivî an na, ev bi te ve girêdayî ye. Lê biryarên bilez nede û nebe sedema mirina tiştan, ji ber ku ez ji bo dîtina te dimirim, û her gava ku ez te dibînim ez heyecan dibim. Ez naxwazim ev tişt ber bi windabûnê ve biçe." // bu son mesaj
+    ];
+    let currentMessageIndex = 0;
+
+    envelope.addEventListener('click', (event) => {
+        if (event.target.tagName === 'BUTTON' || envelope.classList.contains('flap')) {
+            return;
+        }
+        envelope.classList.add('flap');
+    });
+
+    heart.addEventListener('click', (event) => {
+        if (envelope.classList.contains('flap')) {
+            event.stopPropagation();
+            envelope.classList.remove('flap');
+            // Clear hearts when closing the envelope
+            document.querySelector('.hearts-container').innerHTML = '';
+        }
+    });
+
+  function handleYesClick(event) {
+    event.stopPropagation();
+    mainText.textContent = messages[currentMessageIndex];
+
+    if (currentMessageIndex < messages.length - 1) {
+        currentMessageIndex++;
+    } else {
+        // This is the last message
+        // Hide buttons
+        document.querySelector(".button-container").style.display = "none";
+
+        // Expand the letter
+        document.querySelector(".letter").classList.add("expand");
+
+        // Fly the hearts!
+        const heartsContainer = document.querySelector('.hearts-container');
+        const heartCount = 50; // Create 50 hearts
+        for (let i = 0; i < heartCount; i++) {
+            // Create hearts with a random delay to make them appear gradually
+            setTimeout(() => {
+                const floatingHeart = document.createElement('div');
+                floatingHeart.classList.add('floating-heart');
+
+                // Randomize properties for each heart
+                const randomLeft = Math.random() * 100; // Start anywhere horizontally
+                const randomDuration = 5 + (Math.random() * 5); // Animation duration between 5-10 seconds
+                const randomScale = 0.5 + Math.random() * 0.8; // Vary size
+                const randomDrift = (Math.random() - 0.5) * 200; // Add horizontal movement
+
+                // Apply randomized styles using CSS variables
+                floatingHeart.style.left = `${randomLeft}vw`;
+                floatingHeart.style.animationDuration = `${randomDuration}s`;
+                floatingHeart.style.setProperty('--scale', randomScale);
+                floatingHeart.style.setProperty('--drift', randomDrift);
+
+                heartsContainer.appendChild(floatingHeart);
+
+                // Remove the heart from the DOM after its animation is complete
+                setTimeout(() => {
+                    floatingHeart.remove();
+                }, randomDuration * 1000);
+
+            }, Math.random() * 4000); // Stagger their creation over 4 seconds
+        }
+    }
+}
+
+
+    function handleNoClick(event) {
+        event.stopPropagation();
+        alert("Tu nikarî bibêjî na, Rozerîn :)");
+    }
+</script>
+
+</body>
+</html>
