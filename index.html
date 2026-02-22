@@ -12,8 +12,11 @@
       <div class="envelope-wrapper">
         <div class="envelope">
           <div class="letter">
+            <div class="letter-photo-wrapper">
+              <img src="./img.jpeg" alt="Envelope photo" class="letter-photo" />
+            </div>
             <div class="text">
-              <h1 id="main-text">?</h1>
+              <h1 id="main-text"></h1>
             </div>
             <div class="button-container">
               <button onclick="handleYesClick(event)">Evet</button>
@@ -29,49 +32,37 @@
       const envelope = document.querySelector(".envelope-wrapper");
       const heart = document.querySelector(".heart");
       const mainText = document.getElementById("main-text");
+      const letter = document.querySelector(".letter");
+      const buttonContainer = document.querySelector(".button-container");
+      const heartsContainer = document.querySelector(".hearts-container");
 
       const messages = [
-        "...",
-        "...",
-        "...", // bu son mesaj
+        "Görmek istediğine emin misin?",
+        "Göreceğin şey seni çok mutlu edecek!",
+        "Hazır mısın?", // bu son mesaj
       ];
       let currentMessageIndex = 0;
 
-      envelope.addEventListener("click", (event) => {
-        if (
-          event.target.tagName === "BUTTON" ||
-          envelope.classList.contains("flap")
-        ) {
+      heart.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (envelope.classList.contains("flap")) {
           return;
         }
         envelope.classList.add("flap");
-      });
-
-      heart.addEventListener("click", (event) => {
-        if (envelope.classList.contains("flap")) {
-          event.stopPropagation();
-          envelope.classList.remove("flap");
-        
-          document.querySelector(".hearts-container").innerHTML = "";
-        }
+        mainText.textContent = messages[currentMessageIndex];
       });
 
       function handleYesClick(event) {
         event.stopPropagation();
-        mainText.textContent = messages[currentMessageIndex];
-
         if (currentMessageIndex < messages.length - 1) {
           currentMessageIndex++;
+          mainText.textContent = messages[currentMessageIndex];
         } else {
-         
-        
-          document.querySelector(".button-container").style.display = "none";
+          buttonContainer.style.display = "none";
 
-         
-          document.querySelector(".letter").classList.add("expand");
+          letter.classList.add("expand");
+          letter.classList.add("show-photo");
 
-         
-          const heartsContainer = document.querySelector(".hearts-container");
           const heartCount = 50; // Create 50 hearts
           for (let i = 0; i < heartCount; i++) {
             
